@@ -244,13 +244,13 @@ print(hasAnyMatches)
 
 // functions are actually a special case of closures: a block of code which can be called later. the code in closure has access to things like variables and functions 
 // that are in scope. that is where the closure was created. even if the closure is in different scope when it's executed.
-// you can write closures without names by surrounding code inside parenthesis like ({}).
+// you can write closures without names by surrounding code inside like ({}).
 // use in to seperate parameters and return types from body.
 
 numbers.map({(number: Int)-> Int in 
              let result = 3 * number
              return result
-)
+            }
             
             
     
