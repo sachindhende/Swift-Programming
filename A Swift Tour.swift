@@ -211,16 +211,82 @@ print(fifteen)
 
 // functions are first class type that means functions can return another functions as it's value
 
-func makeIncreamenter () -> ((Int) -> Int) {
-  func addOne(number: Int) -> {
-    return 1 + number
-  )
-  return addOne()
-)
-var increament = makeIncreamenter()
-increament(7)
+func makeIncreamenter() -> ((Int) -> Int) {
+    func addOne(number: Int) -> Int {
+        
+        return 1 + number
+    }
+    return addOne
+}
 
-// working on above code
+var increament1 = makeIncreamenter()
+print(increament1(7))
+
+// functions can take another function as one of it's arguments
+
+func hasAnyMatches(list: [Int], condition: (Int) -> Bool) -> Bool {
+  for item in list {
+    if condition(item) {
+      return true
+    }
+  }
+  return false
+}
+func lessThanTen(number: Int) -> Bool {
+  return number < 10
+}
+
+var numbers = [5, 10, 12,23, 45]
+hasAnyMatches(list: numbers, condition: lessThanTen)
+print(hasAnyMatches)
+
+// prints true
+
+// functions are actually a special case of closures: a block of code which can be called later. the code in closure has access to things like variables and functions 
+// that are in scope. that is where the closure was created. even if the closure is in different scope when it's executed.
+// you can write closures without names by surrounding code inside parenthesis like ({}).
+// use in to seperate parameters and return types from body.
+
+numbers.map({(number: Int)-> Int in 
+             let result = 3 * number
+             return result
+)
+            
+            
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
