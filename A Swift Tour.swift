@@ -252,49 +252,7 @@ numbers.map({(number: Int)-> Int in
              return result
             }
             
-            
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
- 
+// you can write closures more precisely when a closures type is already known such as callback for a delegate. you can ommit the parameter, return type or both
+// single statement closures implicitely returns the value of their only statement.  
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+let mappedNumbers = numbers.map({)
