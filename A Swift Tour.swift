@@ -142,7 +142,7 @@ print(n)                 // prints 128
 var total = 0
 for i in 0..<4 {
   total += i
-)
+}
 print(total)          // prints 6
 
 // use ..< to make a range that omitts upper value and use ...< to make a range that includes both values.
@@ -150,22 +150,77 @@ print(total)          // prints 6
 
     
     
- 
+ //                FUNCTIONS AND CLOSURES
+
+// use func to declare a function use -> to seperate the parameter names and types from the functions return type
+// call a function by it's name followed by the list of argument in pair of parenthesis.
+
+func greet (person: String, day: String) -> String {
+  return "Hello \(person), today is \(day)"
+}
+greet("Sachin", "Sunday")
+
+// by default functions use their parameter names as labels for their arguments. use custom argument label before the parameter name
+// or use _ to use no argument label
+
+func greet (_ person: String, on day: String) -> String {
+  return "Hello \(person), today is \(day)"
+}
+let label = greet("Sachin", on :"Sunday")
+print(label)
 
 
+// use touple to make a compound value- for example to return multiple values from a function. the elements of touple can be refered to either by name or number
 
+func calculateStatistics(scores: [Int]) -> (min: Int, max: Int, sum: Int) {
+  var min = scores[0]
+  var max = scores[0]
+  var sum = 0
+for score in scores {
+  if score > max {
+    max = score
+  } else if score < min {
+    min = score
+  }
+  sum += score
+}
+  return (min, max, sum)
+}
+let statistics = calculateStatistics(scores: [5, 3, 100, 3, 9])
+print(statistics.min)
+print(statistics.max)
+print(statistics.sum) 
 
+// prints 3, 100, 120
 
+// Functions can be nested, nested functions have access to variables that were declared in the outer functions. you can use nested functions to organize code
+// in a function that's to long or complex.
 
+func returnFifteen() -> Int {
+  var y = 10
+  
+  func add() {
+    y += 5
+  }
+  add ()
+  return y
+}
+let fifteen = returnFifteen()
+print(fifteen)
+// prints 15
 
+// functions are first class type that means functions can return another functions as it's value
 
+func makeIncreamenter () -> ((Int) -> Int) {
+  func addOne(number: Int) -> {
+    return 1 + number
+  )
+  return addOne()
+)
+var increament = makeIncreamenter()
+increament(7)
 
-
-
-
-
-
-
+// working on above code
 
 
 
