@@ -264,7 +264,7 @@ print(mappedNumbers)
 
 //                      OBJECTS AND CLASSES
 
-// use class followed by class name to creat a class. A property declaration in a class is written the same way as constant or variable, excepts that it's in the 
+// use class followed by class's name to creat a class. A property declaration in a class is written the same way as constant or variable, excepts that it's in the 
 // context of class. Likewise method and function 
 
 
