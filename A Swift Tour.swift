@@ -250,9 +250,38 @@ print(hasAnyMatches)
 numbers.map({(number: Int)-> Int in 
              let result = 3 * number
              return result
-            }
+           })
             
 // you can write closures more precisely when a closures type is already known such as callback for a delegate. you can ommit the parameter, return type or both
 // single statement closures implicitely returns the value of their only statement.  
 
-let mappedNumbers = numbers.map({)
+let mappedNumbers = numbers.map({number in 3 * number})
+print(mappedNumbers)
+
+
+
+
+
+//                      OBJECTS AND CLASSES
+
+// use class followed by class name to creat a class. A property declaration in a class is written the same way as constant or variable, excepts that it's in the 
+// context of class. Likewise method and function 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
