@@ -1,3 +1,18 @@
+
+
+
+
+
+
+
+
+
+// *******************  SWIFT PROGRAMMING LANGUAGE    *****************************
+
+
+
+
+
 // traditionaly the first programm in any programming language should print the words "Hello, world!". In swift this can be done in single line.
 
 print("Hello, world!")      // prints "Hello, world!"
@@ -9,7 +24,10 @@ let myConstant = 3.14159    // constants are the numbers or characters that are 
 let impliciteConstant = 43  // compiler imfers the data type from the given value. if value doesn't provided you must provide it's data type while declaring the variable
 let expliciteConstant: Int   // write the data type after semicolon
 
-// variable declaration
+
+//*************** variable declaration  ********************
+
+
 var myVariable = 42        // value of a variable can be changed once it is declared but it must be the same as the initial value/data type
 myVariable = 10
 var impliciteInteger = 50 // compiler infers it's data type as Int.
@@ -30,6 +48,14 @@ let apples = 5
 let appleSummary = "I have \(apples) apples"
 
 // write tree double quotation marks(""") for strings that take up multiple lines before and after the Strings.
+
+
+
+
+
+//*********** ARRAYS AND DICTIONRIES  ***********************
+
+
 
 // Create arrays and dictionaries using brackets and access their elements by writing index or key in brackets.
 
@@ -56,7 +82,12 @@ var emptyDictionary [String: Float] = [:]
 var shoppingList = []
 var occupations = [:]
 
-//        CONTROL FLOW
+
+
+//********************** CONTROL FLOW   *************************
+
+
+
 // use if and swich to make conditionals and for in, while and repeat-while to make loops. parenthesis around condition or loop variable are optional bracket around
 // the body are required.
 let individualScore = [75, 43, 103, 87, 12]
@@ -72,7 +103,20 @@ for score in individualScore {
 
 print(teamScore)                   // prints 11
 
-//           OPTIONALS
+
+
+
+
+
+
+
+
+
+//**********************   OPTIONALS    ****************************
+
+
+
+
 // you can use if and let to work with the values that might be missing. these are represented as optionals. An optional value either contains a value of nil 
 // to indicate as optional. write ? after the type of a value to represent is as optional.
 
@@ -148,9 +192,17 @@ print(total)          // prints 6
 // use ..< to make a range that omitts upper value and use ...< to make a range that includes both values.
 
 
+
+
+
+
+
+
     
     
- //                FUNCTIONS AND CLOSURES
+ //***********************    FUNCTIONS AND CLOSURES      *****************************
+
+
 
 // use func to declare a function use -> to seperate the parameter names and types from the functions return type
 // call a function by it's name followed by the list of argument in pair of parenthesis.
@@ -262,7 +314,19 @@ print(mappedNumbers)
 
 
 
-//                      OBJECTS AND CLASSES
+
+
+
+
+
+
+
+
+
+
+
+//************************** OBJECTS AND CLASSES  *******************************
+
 
 // use class followed by class's name to creat a class. A property declaration in a class is written the same way as constant or variable, excepts that it's in the 
 // context of class. Likewise method and function 
@@ -463,14 +527,27 @@ class Square: NamedShape {
   let optionalSquare: Square? = Square(sideLength: 2.0, name: "optionalSquare")
   let sideLength = optionalSquare?.sideLength
   
+
   
   
   
   
-  //              ENUMERATIONS AND STRUCTURES
   
-  // use enum to create an enumeration. like classes and all other named types, enumerations  can have methods associated with them.
- enum Rank: Int {
+  
+  
+  
+  
+  
+  
+  // ****************************  ENUMERATIONS AND STRUCTURES   ********************************
+  
+  
+  
+  
+ // use enum to create an enumeration. like classes and all other named types, enumerations  can have methods associated with them.
+ 
+  
+  enum Rank: Int {
  case ace = 1
  case two, three, four, five, six, seven, eight, nine, ten
  case jack, queen, king
@@ -493,7 +570,7 @@ class Square: NamedShape {
  let ace = Rank.ace
  let aceRawValue = ace.rawValue
 
-  // adding function to compare two rank values
+// adding function to compare two rank values
   
  func compareTwoRanks(rankOne: Rank, rankTwo: Rank) -> Int {
     if rankOne.rawValue > rankTwo.rawValue {
@@ -508,8 +585,7 @@ class Square: NamedShape {
  let compareRanks = compareTwoRanks(rankOne: jack, rankTwo: two)
  print(compareRanks)     
       
-      
- // the case values of enumerations are actual values not just another way of writing their raw values.    
+// the case values of enumerations are actual values not just another way of writing their raw values.    
       
  enum Suit {
    case spades, hearts, diamonds, clubs
@@ -528,20 +604,34 @@ class Square: NamedShape {
        case .hearts: return "red"                     // you can refer abbreviated form anytime the type is known.
        case .diamonds: return "red"
        case .clubs: return "black"
-     }
-   }
- }
- let hearts = Suit.hearts                          // the constant hearts is assigned the value Suit.hearts explicitely because the constant does'nt have
+    }
+  }
+}
+let hearts = Suit.hearts                          // the constant hearts is assigned the value Suit.hearts explicitely because the constant does'nt have
                                                    // any type specified
- let heartsDescription = hearts.simpleDescription()
- let heartsColor = hearts.color()
- print(heartsDescription)
- print(heartsColor)
+let heartsDescription = hearts.simpleDescription()
+let heartsColor = hearts.color()
+print(heartsDescription)
+print(heartsColor)
  
       
- // if an enum has raw value. those values are determined to be part of declaration. so anytime an instance of those cases will have the same values as raw values.
- // another choice for an enumeration is to have values associated with the case. these values are determined when you make an instance of those cases and those
- // values can be defferent at each instance of an enumeration case. you can think of an associated values as stored properties of the enumeration case.
+// if an enum has raw value. those values are determined to be part of declaration. so anytime an instance of those cases will have the same values as raw values.
+// another choice for an enumeration is to have values associated with the case. these values are determined when you make an instance of those cases and those
+// values can be defferent at each instance of an enumeration case. you can think of an associated values as stored properties of the enumeration case.
   
- // for example consider the case of requesting the sunrise and sunset time from server. the server either responds with the requested information or it responds with
- // the description of what went wrong.
+// for example consider the case of requesting the sunrise and sunset time from server. the server either responds with the requested information or it responds with
+// the description of what went wrong.
+
+  enum ServerResponce {
+    case result(String, String)
+    case failure(String)
+  }
+  let success = ServerResponce.result("6:00 AM", "7:00 PM")
+  let failure = ServerResponce.failure("Out of cheese.")
+  
+  switch success {
+    case let .result(sunrise, sunset): print("sunrise is at \(sunrise), sunset is at \(sunset).")
+    case let .failure(message): print("failure...\(message)")
+  }
+  
+// here the sunrise and sunset times are extracted from the ServerResponce value as part of matching the value against switch cases.
