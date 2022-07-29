@@ -493,16 +493,50 @@ class Square: NamedShape {
  let ace = Rank.ace
  let aceRawValue = ace.rawValue
 
+  // adding function to compare two rank values
+  
+ func compareTwoRanks(rankOne: Rank, rankTwo: Rank) -> Int {
+    if rankOne.rawValue > rankTwo.rawValue {
+        return rankOne.rawValue
+    } else {
+        return rankTwo.rawValue
+    }
+}
+
+ let jack = Rank.queen
+ let two = Rank.two
+ let compareRanks = compareTwoRanks(rankOne: jack, rankTwo: two)
+ print(compareRanks)     
       
       
+ // the case values of enumerations are actual values not just another way of writing their raw values.    
       
-      
-      
-      
-      
-      
-      
-      
+ enum Suit {
+   case spades, hearts, diamonds, clubs
+   
+   func simpleDescription() -> String {
+     switch self {
+       case .spades: return "spades"
+       case .hearts: return "hearts"
+       case .diamonds: return "diamonds"
+       case .clubs: return "clubs"
+     }
+   }
+   func color() -> String {                           // adding color method to Suit to return black for spades and clubs, red for hearts and diamonds
+     switch self {
+       case .spades: return "black"
+       case .hearts: return "red"
+       case .diamonds: return "red"
+       case .clubs: return "black"
+     }
+   }
+ }
+ let hearts = Suit.hearts
+ let heartsDescription = hearts.simpleDescription()
+ let heartsColor = hearts.color()
+ print(heartsDescription)
+ print(heartsColor)
+ 
       
       
       
