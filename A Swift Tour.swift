@@ -524,61 +524,24 @@ class Square: NamedShape {
    }
    func color() -> String {                           // adding color method to Suit to return black for spades and clubs, red for hearts and diamonds
      switch self {
-       case .spades: return "black"
-       case .hearts: return "red"
+       case .spades: return "black"                   // enum case is refered by an abbreviated form because the self is already known to be a Suit.
+       case .hearts: return "red"                     // you can refer abbreviated form anytime the type is known.
        case .diamonds: return "red"
        case .clubs: return "black"
      }
    }
  }
- let hearts = Suit.hearts
+ let hearts = Suit.hearts                          // the constant hearts is assigned the value Suit.hearts explicitely because the constant does'nt have
+                                                   // any type specified
  let heartsDescription = hearts.simpleDescription()
  let heartsColor = hearts.color()
  print(heartsDescription)
  print(heartsColor)
  
       
-      
-      
-      
-      
-      
-      
-      
+ // if an enum has raw value. those values are determined to be part of declaration. so anytime an instance of those cases will have the same values as raw values.
+ // another choice for an enumeration is to have values associated with the case. these values are determined when you make an instance of those cases and those
+ // values can be defferent at each instance of an enumeration case. you can think of an associated values as stored properties of the enumeration case.
   
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+ // for example consider the case of requesting the sunrise and sunset time from server. the server either responds with the requested information or it responds with
+ // the description of what went wrong.
