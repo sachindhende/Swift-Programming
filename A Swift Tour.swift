@@ -355,7 +355,7 @@ class Circle: NamedShape {
       numberOfSides = 3
     }
     
-    var perimeter: Double {
+    var perimeter: Double {                              // proprty with getter and setter 
       get {
         return 3.0 * sideLength
       }
@@ -375,7 +375,143 @@ class Circle: NamedShape {
   
   
   
+  // if you don't need to compute the property but still want to provide the code that runs before and after setting the new value, use willSet and didSet.
+  // the code you provide runs anytime the value outside init changes.
+  
+class NamedShape {
+  var numberOfSides:Int = 0
+  var name: String
+  
+  init (name: String) {
+    self.name = name
+  }
+  
+  func simpleDescription() -> String {
+    return "A shape with \(numberOfSides) sides."
+  }
+  
+}
+
+class Square: NamedShape {
+  var sideLength: Double
+  
+  init(sideLength: Double, name: String) {
+    self.sideLength = sideLength
+    super.init(name: name)
+    numberOfSides = 4
+  }
+  
+  func area() -> Double {
+    return sideLength * sideLength
+  }
+  
+  override func simpleDescription() -> String {
+    return "A square with side lenths of \(sideLength)."
+     }
+  }
+
+  class EquilateralTriangle: NamedShape {
+    var sideLength: Double = 0.0
     
+    init(sideLength: Double, name: String) {
+      self.sideLength = sideLength
+      super.init(name: name)
+      numberOfSides = 3
+    }
+    
+    var perimeter: Double {
+      get {
+        return 3.0 * sideLength
+      }
+      set {
+        sideLength = newValue / 3.0
+      }
+    }
+    
+    override func simpleDescription() -> String {
+      return "An Equilateral triangle with sideLength of \(sideLength)."
+    }
+  }
+  
+    class TriangleAndSquare {
+    var triangle: EquilateralTriangle {
+      willSet {
+        square.sideLength = newValue.sideLength
+      }
+    }
+    var square: Square {
+      willSet {
+        triangle.sideLength = newValue.sideLength
+      }
+    }
+    init(size: Double, name: String) {
+      triangle = EquilateralTriangle(sideLength: size, name: name)
+      square = Square(sideLength: size, name: name)
+    }
+  }
+  var triangleAndSquare = TriangleAndSquare(size: 10.0, name: "another test shape")
+  print(triangleAndSquare.square.sideLength)
+  triangleAndSquare.square = Square(sideLength: 50.0, name: "larger area")
+  print(triangleAndSquare.triangle.sideLength)
+    
+      
+      
+  // while working with optional values, you can write ? before operations like methods, properties and subscripts. if the optional value is nil, the expression after
+  // ? will be ignored. otherwise the optional will be unwrapped and everything after ? acts on unwrapped value. in both cases the the value of whole expression will 
+  // be optional value.
+  
+  let optionalSquare: Square? = Square(sideLength: 2.0, name: "optionalSquare")
+  let sideLength = optionalSquare?.sideLength
+  
+  
+  
+  
+  
+  //              ENUMERATIONS AND STRUCTURES
+  
+  // use enum to create an enumeration. like classes and all other named types, enumerations  can have methods associated with them.
+ enum Rank: Int {
+ case ace = 1
+ case two, three, four, five, six, seven, eight, nine, ten
+ case jack, queen, king
+
+ func simpleDescription() -> String {
+ switch self {
+ case .ace:
+ return "ace"
+ case .jack:
+ return "jack"
+ case .queen:
+ return "queen"
+ case .king:
+ return "king"
+ default:
+ return String(self.rawValue)
+  }
+ }
+}
+ let ace = Rank.ace
+ let aceRawValue = ace.rawValue
+
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+  
     
     
     
