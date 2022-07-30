@@ -68,8 +68,8 @@ var occupations = [
 occupations["Sachin"] = "Test Engineer"
 
 // to create an empty array or dictionary, use initializer syntax
-var emptyArray [String] = []
-var emptyDictionary [String: Float] = [:]
+var emptyArray: [String] = []
+var emptyDictionary: [String: Float] = [:]
 
 // if type information can be infered, you can declare array and dictionary by using [] and [:]
 var shoppingList = []
@@ -540,7 +540,7 @@ class Square: NamedShape {
  // use enum to create an enumeration. like classes and all other named types, enumerations  can have methods associated with them.
  
   
-  enum Rank: Int {
+ enum Rank: Int {
  case ace = 1
  case two, three, four, five, six, seven, eight, nine, ten
  case jack, queen, king
@@ -628,3 +628,249 @@ print(heartsColor)
   }
   
 // here the sunrise and sunset times are extracted from the ServerResponce value as part of matching the value against switch cases.
+  
+  
+
+  
+  
+  
+//***********************************    STRUCTURES   *******************************
+  
+// structures supports many of the same behaviour as classes including methods and initializers. the main difference between the structures and classes is that the 
+// code is copied when you pass the structure around in your code while the classes are passed by reference.
+  
+  struct Card {
+    let rank: Rank
+    let suit: Suit
+    
+    func simpleDescription() -> String {
+      return "A \(rank.simpleDescription() of \(suit.simpleDescription()))
+    }
+    let threeOfSpades = Card(rank: .three, suit: .spades)
+    let threeOfSpadesDescription = threeOfSpades.simpleDescription() 
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+//****************************************  PROTOCOLS AND EXTENSIONS  ***********************************************
+    
+// use protocol to declare a protocol 
+    
+    protocol ExampleProtocol {
+      var simpleDescription: String { get }
+      mutating func adjust()
+    }
+
+// classes enumerations and structures can all adopt protocols
+    
+   class SimpleClass: ExampleProtocol {
+     var simpleDescription: String = "A very simple class. "
+     var anotherProperty: Int = 69105
+     
+     func adjust() {                                // class does'nt need to add word mutating to a function because classes methods alway modifies the class.
+       simpleDescription += "Now 100% adjusted."
+     }
+   }
+    let a = SimpleClass()
+    a.adjust()
+    let aDescription = a.simpleDescription
+    
+    print(aDescription)                        // prints "A very simple class. Now 100% adjusted."
+    
+  // here the class named SimpleClass conforms to the ExampleProtocol by fullfiling the proprty named simpleDescription and a mutating function adjust().
+  // functions in the classes by default conforms to mutating function.
+    
+     struct SimpleStruct: ExampleProtocol {
+     var simpleDescription: String = "A very simple struct. "
+     
+     mutating func adjust() {                      // the word mutating is used to mark the function that modifies the structure.
+       simpleDescription += "Now 100% adjusted."
+     }
+   }
+    var b = SimpleStruct()
+    b.adjust()
+    letbDescription = b.simpleDescription
+    
+    print(bDescription)  
+    
+    
+// to conform to a protocol, the classes structures and enumerations must has to fullfill all the requirements of that protocol. that is they must include all the 
+// properties and methods.
+    
+//***********************  EXTENSIONS  ***************************
+    
+ // use extension to add functionality to an existing type, such as new methods and computed properties. you can use extension to add protocol conformance to a type 
+ // that's declared elsewhere or even to a type that you have imported from a library or framework.
+    
+  extension Int: ExampleProtocol {
+    var simpleDescription: String {
+      return "The number \(self)."
+    }
+    mutating func adjust() {
+      self += 42
+    }
+  }
+    print(7.simpleDescription)
+  
+// here the extension is used to conform ExampleProtocol to standard library structure Int.
+    
+// you use protocol name just like any other named type. for example to create a collection of different types but they all conform to the same protocol. 
+// when you work with the values who's type is a protocol type, methods outside of protocol definition are'nt available.
+ 
+  
+ let protocolValue: ExampleProtocol = a
+ print(protocolValue.simpleDescription)          // prints "A very simple class. Now 100% adjusted."
+    
+ print(protocolValue.anotherProperty)           // gives error: value of type 'ExampleProtocol' has no member 'anotherProperty'
+  
+// even though the variable protocolValue has runtime type of SimpleClass, the compiler treats it as the given type of ExampleProtocol. this means you can'nt 
+// accidentally access the methods or properties that the class implements outside of it's protocol conformance.
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+//***********************************  ERROR HANDELING  **********************************************
+    
+// you represent errrors using any type that adopts error protocol.
+    
+    enum PrinterError: Error {
+      case outOfPaper
+      case noToner
+      case onFire
+    }
+    
+// use throw to throw an error and throws to mark a function that throws an error. if you use throw in a function, the function immediately returns to the code
+// which had called the function and the error will be handeled by that code.
+    
+func send(job: Int, toPrinter printerName: String) thows -> String {
+  if printerName = "Never has toner" {
+    throw PrinterError.noToner
+  }
+    return "Job sent"
+}
+var printerJob = try send(job: 69105, toPrinter: "Sachin's printer")
+print(printerJob)   
+    
+// there are several ways to handle the errors. one way is use do-catch. inside the do block you mark the code try that can throw an error and inside catch block
+// the error is automatically given the name error unless you give it a different name.
+    
+    
+ do {
+   let printerResponce = try send(job: 10605, toPrinter: "Sachin's Printer")
+   print(printerResponce)
+ }
+    catch {
+      print(error)
+    }
+    
+ // you can provide multiple catch blocks to handel the specific errors. you can write pattern after catch just as you do after case in switch.
+    
+  do {
+   let printerResponce = try send(job: 10605, toPrinter: "Sachin's Printer")
+   print(printerResponce)
+ }
+    catch PrinterError.onFire {
+      print("Printer is on fire")
+    }
+    catch let printerError as PrinterError {
+      print("Printer error: \(printerError)")
+    }
+    
+    catch {
+      print(error)
+    }   
+    
+ // another way to handle the error is use try? to convert the result to an optional. if the function throws an error, the specific error is discarded and the result
+ // is nil. otherwise the result is an optional containing the value that the function returned.
+    
+ let printerSuccess = try? send(job: 1005, toPrinter: "Sachin")
+ let printerFailure = try? send(job: 1006, toPrinter: "Never has toner")
+ 
+ // use defer to write a block of code that's executed after all other code in the function just before the function returns. this code executed whether the function 
+ // thows an error or not. you can use defer to write setup and cleanup code next to each other even though they need to be executed at different times.
+    
+    
+  var fridgeIsOpen = false
+  let fridgeContents = ["milk", "eggs", "leftovers"]
+
+  func fridgeContents(_ food: String) -> Bool {
+    fridgeIsOpen = true
+    
+    defer {
+      fridgeIsOpen = false
+    }
+    
+    let result = fridgeContents.contains(food)
+    return result
+  }
+   fridgeContains("banana")
+   print(fridgeIsOpen)
+    
+    
+    
+    
+ 
+    
+    
+    
+    
+    
+//**************************************************  GENERICS  ********************************************************
+    
+    
+    
+// write a name inside angle brackets to make a generic function or type
+    
+    func makeAnArray<Item>(repeating item: Item, numberOfTimes: Int) -> [Int] {
+      var result: [Item] = []
+      for _ in 0..<numberOfTimes {
+        result.append(item)
+      }
+      return result
+    }
+    makeAnArray(repeating: "Knock", numberOfTimes: 4)
+    
+      
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+  
+  
+  
+  
+  
+  
+  
+  
